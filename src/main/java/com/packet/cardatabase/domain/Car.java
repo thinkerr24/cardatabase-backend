@@ -18,6 +18,9 @@ public class Car {
 	private int year;
 	private double price;
 	
+	public Car() {
+		
+	}
 	public Car(String brand, String model, String color, String registerNumber, int year, double price) {
 		super();
 		this.brand = brand;
