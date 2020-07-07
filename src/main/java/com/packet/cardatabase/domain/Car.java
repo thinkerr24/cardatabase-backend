@@ -1,9 +1,12 @@
 package com.packet.cardatabase.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Car {
@@ -17,11 +20,14 @@ public class Car {
 	private String registerNumber;
 	private int year;
 	private double price;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "owner")
+	private Owner owner;
 	
 	public Car() {
 		
 	}
-	public Car(String brand, String model, String color, String registerNumber, int year, double price) {
+	public Car(String brand, String model, String color, String registerNumber, int year, double price, Owner owner) {
 		super();
 		this.brand = brand;
 		this.model = model;
@@ -29,6 +35,7 @@ public class Car {
 		this.registerNumber = registerNumber;
 		this.year = year;
 		this.price = price;
+		this.owner = owner;
 	}
 	
 	public String getBrand() {
@@ -70,4 +77,10 @@ public class Car {
 		this.price = price;
 	}
 	
+	public Owner getOwner() {
+		return owner;
+		}
+		public void setOwner(Owner owner) {
+		this.owner = owner;
+		}
 }
